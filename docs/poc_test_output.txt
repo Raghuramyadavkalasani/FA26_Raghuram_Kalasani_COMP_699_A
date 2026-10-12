@@ -1,0 +1,21 @@
+Environment: Darwin arm64 Python 3.12.14 Django 5.2.18 SQLite 3.53.1
+Temporary file-backed database; IMMEDIATE transactions; two independent worker connections.
+test_back_to_back_allowed_on_both_sides (__main__.ApprovalTests.test_back_to_back_allowed_on_both_sides) ... ok
+test_busy_database_returns_retry_without_update (__main__.ApprovalTests.test_busy_database_returns_retry_without_update) ... ok
+test_cancelled_request_cannot_be_approved (__main__.ApprovalTests.test_cancelled_request_cannot_be_approved) ... ok
+test_different_equipment_allowed (__main__.ApprovalTests.test_different_equipment_allowed) ... ok
+test_duplicate_asset_database_rejects (__main__.ApprovalTests.test_duplicate_asset_database_rejects) ... ok
+test_inactive_equipment (__main__.ApprovalTests.test_inactive_equipment) ... ok
+test_invalid_intervals_database_rejects (__main__.ApprovalTests.test_invalid_intervals_database_rejects) ... ok
+test_invalid_status_database_rejects (__main__.ApprovalTests.test_invalid_status_database_rejects) ... ok
+test_nonblocking_statuses (__main__.ApprovalTests.test_nonblocking_statuses) ... ok
+test_overlap_shapes_rejected_without_change (__main__.ApprovalTests.test_overlap_shapes_rejected_without_change) ... ok
+test_past_start (__main__.ApprovalTests.test_past_start) ... ok
+test_repeated_approval (__main__.ApprovalTests.test_repeated_approval) ... ok
+test_simultaneous_approvals_20_rounds (__main__.ApprovalTests.test_simultaneous_approvals_20_rounds) ... ok
+test_valid_request_persists_after_reconnect (__main__.ApprovalTests.test_valid_request_persists_after_reconnect) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.157s
+
+OK
