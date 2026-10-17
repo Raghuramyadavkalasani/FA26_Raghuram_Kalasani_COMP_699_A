@@ -15,7 +15,7 @@ Command: `python src/reservation_poc.py` (using the isolated Python environment)
 
 Environment reported by the run: macOS/Darwin arm64, Python 3.12.14, Django 5.2.18, SQLite 3.53.1. Exact installed dependencies are recorded in `src/requirements-poc.txt`.
 
-Result: **14 test methods passed**, with a reported test runtime of **0.157 seconds**. This runtime is not an application performance benchmark. The unedited captured output is in `docs/poc_test_output.txt`.
+Result: **14 test methods passed**, with a reported test runtime of **0.157 seconds**. This runtime is not an application performance benchmark. The unedited captured output is in `docs/Step_1/poc_test_output.txt`.
 
 | Check | Observed result |
 |---|---|
