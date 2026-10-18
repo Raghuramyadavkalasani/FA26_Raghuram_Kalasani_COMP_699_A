@@ -1,0 +1,11 @@
+test_boundary_and_overlap_shapes (test_prepare_inputs.InputTests.test_boundary_and_overlap_shapes) ... ok
+test_generator_constraints (test_prepare_inputs.InputTests.test_generator_constraints) ... ok
+test_hand_counted_summary (test_prepare_inputs.InputTests.test_hand_counted_summary) ... ok
+test_invalid_generation_parameters (test_prepare_inputs.InputTests.test_invalid_generation_parameters) ... ok
+test_invalid_records_rejected (test_prepare_inputs.InputTests.test_invalid_records_rejected) ... ok
+test_seed_repeatability_and_variation (test_prepare_inputs.InputTests.test_seed_repeatability_and_variation) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

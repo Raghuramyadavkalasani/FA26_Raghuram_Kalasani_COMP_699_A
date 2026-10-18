@@ -1,0 +1,41 @@
+{
+  "stage": "input_preparation_only",
+  "parameters": {
+    "count": 200,
+    "equipment": 10,
+    "seed": 699,
+    "output": "docs/step_2/week_1/student_run"
+  },
+  "environment": {
+    "python": "3.9.6",
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "csv_sha256": "b5eb53e3ff1287c47019651baf823a7a81b0090de36064aa2bcd8552c19ec5d8",
+  "validation": "passed; CSV round-trip identical",
+  "summary": {
+    "request_count": 200,
+    "equipment_used": 10,
+    "requests_per_equipment": {
+      "1": 23,
+      "2": 21,
+      "3": 13,
+      "4": 18,
+      "5": 21,
+      "6": 17,
+      "7": 25,
+      "8": 17,
+      "9": 21,
+      "10": 24
+    },
+    "duration_minutes_counts": {
+      "15": 40,
+      "30": 49,
+      "60": 52,
+      "120": 59
+    },
+    "same_equipment_pairs": 1962,
+    "overlapping_input_pairs": 414,
+    "overlap_fraction_of_same_equipment_pairs": 0.21100917431192662
+  }
+}
