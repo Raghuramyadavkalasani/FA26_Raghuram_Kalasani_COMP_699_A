@@ -1,0 +1,58 @@
+Creating test database for alias 'default' ('/Users/raghuramkalasani/Documents/ChatGPT/proffesional seminar/output/software-step2-weeks2-3/src/campus_checkout/test_campus.sqlite3')...
+Destroying old test database for alias 'default' ('/Users/raghuramkalasani/Documents/ChatGPT/proffesional seminar/output/software-step2-weeks2-3/src/campus_checkout/test_campus.sqlite3')...
+Found 21 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: admin, auth, contenttypes, inventory, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying inventory.0001_initial... OK
+  Applying inventory.0002_reservation... OK
+  Applying sessions.0001_initial...test_approval_rechecks_retirement_and_time (inventory.test_reservations.ReservationTests.test_approval_rechecks_retirement_and_time) ... ok
+test_borrower_and_unprivileged_staff_denied (inventory.test_reservations.ReservationTests.test_borrower_and_unprivileged_staff_denied) ... ok
+test_csrf_and_get_cannot_mutate (inventory.test_reservations.ReservationTests.test_csrf_and_get_cannot_mutate) ... ok
+test_database_rejects_reversed_interval (inventory.test_reservations.ReservationTests.test_database_rejects_reversed_interval) ... ok
+test_inactive_equipment_rejected (inventory.test_reservations.ReservationTests.test_inactive_equipment_rejected) ... ok
+test_integrated_workflow_valid_and_invalid (inventory.test_reservations.ReservationTests.test_integrated_workflow_valid_and_invalid) ... ok
+test_invalid_intervals_do_not_write (inventory.test_reservations.ReservationTests.test_invalid_intervals_do_not_write) ... ok
+test_login_logout_invalid_credentials_and_anonymous (inventory.test_reservations.ReservationTests.test_login_logout_invalid_credentials_and_anonymous) ... ok
+test_overlap_rollback_and_different_item_allowed (inventory.test_reservations.ReservationTests.test_overlap_rollback_and_different_item_allowed) ... ok
+test_ownership_and_forged_owner (inventory.test_reservations.ReservationTests.test_ownership_and_forged_owner) ... ok
+test_pending_does_not_block_and_boundary_does_not_overlap (inventory.test_reservations.ReservationTests.test_pending_does_not_block_and_boundary_does_not_overlap) ... ok
+test_reject_and_repeated_decision (inventory.test_reservations.ReservationTests.test_reject_and_repeated_decision) ... ok
+test_search_availability_and_invalid_time (inventory.test_reservations.ReservationTests.test_search_availability_and_invalid_time) ... ok
+test_valid_request_persists_owner_and_pending (inventory.test_reservations.ReservationTests.test_valid_request_persists_owner_and_pending) ... ok
+test_admin_can_create_edit_and_retire_equipment (inventory.tests.InventoryTests.test_admin_can_create_edit_and_retire_equipment) ... ok
+test_anonymous_user_redirected_to_login (inventory.tests.InventoryTests.test_anonymous_user_redirected_to_login) ... ok
+test_duplicate_asset_tag_rejected_by_database (inventory.tests.InventoryTests.test_duplicate_asset_tag_rejected_by_database) ... ok
+test_invalid_asset_tag_rejected (inventory.tests.InventoryTests.test_invalid_asset_tag_rejected) ... ok
+test_regular_user_cannot_add_equipment (inventory.tests.InventoryTests.test_regular_user_cannot_add_equipment) ... ok
+test_staff_without_permissions_cannot_add_equipment (inventory.tests.InventoryTests.test_staff_without_permissions_cannot_add_equipment) ... ok
+test_two_connections_approve_at_most_one (inventory.test_reservations.ConcurrentApprovalTests.test_two_connections_approve_at_most_one) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 2.127s
+
+OK
+Destroying test database for alias 'default' ('/Users/raghuramkalasani/Documents/ChatGPT/proffesional seminar/output/software-step2-weeks2-3/src/campus_checkout/test_campus.sqlite3')...
+ OK
+System check identified no issues (0 silenced).

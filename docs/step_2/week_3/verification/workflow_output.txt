@@ -1,0 +1,33 @@
+Forbidden (Permission denied): /review/1/
+Traceback (most recent call last):
+  File "/Users/raghuramkalasani/Documents/ChatGPT/proffesional seminar/.venv-django-poc/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/raghuramkalasani/Documents/ChatGPT/proffesional seminar/.venv-django-poc/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/raghuramkalasani/Documents/ChatGPT/proffesional seminar/.venv-django-poc/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/raghuramkalasani/Documents/ChatGPT/proffesional seminar/.venv-django-poc/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 56, in _view_wrapper
+    test_pass = test_func(request.user)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/raghuramkalasani/Documents/ChatGPT/proffesional seminar/.venv-django-poc/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 129, in check_perms
+    raise PermissionDenied
+django.core.exceptions.PermissionDenied
+{
+  "runner": "assistant or whoever invokes this command",
+  "reservation_id": 1,
+  "equipment": "EVID-8B4BDAA5",
+  "invalid_input_http": 200,
+  "invalid_input_created_records": 0,
+  "valid_request_http": 302,
+  "borrower_approval_http": 403,
+  "reviewer_approval_http": 302,
+  "stored_status": "approved",
+  "reviewer_recorded": true,
+  "borrower_page": "Approved",
+  "availability": "Unavailable",
+  "start": "2026-10-29T18:26:40.278776+00:00",
+  "end": "2026-10-29T19:26:40.278776+00:00"
+}

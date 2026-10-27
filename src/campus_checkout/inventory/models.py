@@ -18,3 +18,25 @@ class Equipment(models.Model):
 
     def __str__(self):
         return f"{self.asset_tag} — {self.name}"
+
+
+class Reservation(models.Model):
+    class Status(models.TextChoices):
+        PENDING = "pending", "Pending"
+        APPROVED = "approved", "Approved"
+        REJECTED = "rejected", "Rejected"
+
+    equipment = models.ForeignKey(Equipment, on_delete=models.PROTECT)
+    borrower = models.ForeignKey("auth.User", on_delete=models.PROTECT, related_name="reservations")
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING)
+    created_at = models.DateTimeField(auto_now_add=True)
+    reviewed_by = models.ForeignKey("auth.User", null=True, blank=True, on_delete=models.PROTECT, related_name="reviews")
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        permissions = [("review_reservation", "Can approve or reject reservation requests")]
+        constraints = [models.CheckConstraint(condition=models.Q(end__gt=models.F("start")), name="reservation_positive_interval")]
+        indexes = [models.Index(fields=["equipment", "status", "start", "end"])]

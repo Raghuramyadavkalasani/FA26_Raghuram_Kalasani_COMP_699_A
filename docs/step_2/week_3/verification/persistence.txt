@@ -1,0 +1,3 @@
+8 objects imported automatically (use -v 2 for details).
+
+NEW PROCESS persistence check: reservation 1 approved borrower evidence-8b4bdaa5 equipment EVID-8B4BDAA5

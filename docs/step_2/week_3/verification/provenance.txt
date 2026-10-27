@@ -1,0 +1,13 @@
+Verification provenance
+Date: October 27, 2026
+Runner: OpenAI assistant in the student's local workspace
+Python: 3.12.14
+Django: 5.2.18
+SQLite: 3.53.1
+Platform: macOS-15.6.1-arm64-arm-64bit
+Week 2 command: python manage.py test inventory.test_reservations.ReservationTests --noinput --verbosity 2
+Week 3 command: python manage.py test inventory --noinput --verbosity 2
+Workflow: CAMPUS_DB=/private/tmp/campus-week23-evidence.sqlite3 python manage.py demo_workflow
+Checks: manage.py check (no issues); makemigrations --check --dry-run (no changes)
+Persistence: fresh management shell process queried the same committed reservation.
+Limitations: Django test client is used for HTTP evidence; no claim of student execution, real-browser compatibility testing, load testing, or deployment readiness.

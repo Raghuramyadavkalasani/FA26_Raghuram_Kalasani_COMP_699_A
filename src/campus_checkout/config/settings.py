@@ -78,7 +78,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.environ.get('CAMPUS_DB', str(BASE_DIR / 'db.sqlite3')),
+        'OPTIONS': {'transaction_mode': 'IMMEDIATE', 'timeout': 20},
     }
 }
 
@@ -123,3 +124,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "catalog"
+LOGOUT_REDIRECT_URL = "login"
+# A file-backed test database exercises actual SQLite writer serialization.
+DATABASES['default']['TEST'] = {'NAME': os.environ.get('CAMPUS_TEST_DB', str(BASE_DIR / 'test_campus.sqlite3'))}

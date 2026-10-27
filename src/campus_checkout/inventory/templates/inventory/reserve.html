@@ -1,0 +1,1 @@
+{% extends 'inventory/base.html' %}{% block content %}<h2>Request {{ item.name }}</h2><p>{{ item.asset_tag }} | {{ item.category }}</p><p>Approval is required. A competing pending request may be approved first.</p><form method="post">{% csrf_token %}{{ form.as_p }}<button>Submit request</button></form>{% endblock %}
