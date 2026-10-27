@@ -1,22 +1,28 @@
-# Step 2 - Week 1
+# Software development: Week 1
 
-Review draft: confirm the proposed research question against your approved plan.
+This guide replaces the earlier research-input guide. The software project is Campus Equipment Checkout. The previous research documents remain historical material, not the current milestone submission.
 
-1. Read docs/step_2/week_1/research_foundation.pdf.
-2. Open Terminal in this folder. Use Python 3.12 for the recorded environment.
-3. Run:
+## Run from the repository root
+
+Use Python 3.12, not the Mac system Python 3.9. If python3.12 is not on PATH, use your installed Python 3.12 executable or reuse the working Python 3.12 virtual environment.
 
 ```sh
-python3 src/research/prepare_inputs.py --count 200 --equipment 10 --seed 699 --output docs/step_2/week_1/evidence
-python3 -m unittest discover -s src/research -p 'test_*.py' -v
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r src/campus_checkout/requirements.txt
+cd src/campus_checkout
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
 ```
 
-No additional packages are needed. If python3 selects a different version, use your Python 3.12 interpreter path. The script is also compatible with Python 3.9 for input preparation; it does not run Django. Outputs are replaced on rerun; use --output with another directory to retain the supplied assistant-run evidence.
+Open http://127.0.0.1:8000/admin/ and sign in. Add, edit, search, and retire synthetic equipment. Stop the server with Control+C, then run:
 
-Expected recorded summary: 200 requests, 10 items, 1,962 same-item pairs, 414 overlapping input pairs. These are not double bookings or comparative experiment results. Six tests should pass.
+```sh
+python manage.py check
+python manage.py test inventory --verbosity 2
+```
 
-Upload the docs and src folders from this package at your GitHub repository root, preserving paths. They add docs/step_2/week_1 and src/research; do not replace or delete previous project folders. This package contains no local application database or account data.
+The assistant reran all six inventory tests successfully on October 27, 2026. See docs/step_2/week_1/verification for captured results and implementation_foundation.pdf for scope and limitations. Reservation and lending workflows remain planned.
 
-Suggested commit message: Add Week 1 synthetic reservation inputs and research foundation
-
-The code, report and recorded run were prepared with AI assistance. The student repeated execution successfully; see docs/step_2/week_1/student_run/. Review the report and understand the code before submitting. Only Week 1 is prepared. Week 2 and Week 3 experiments remain planned; the final combined Canvas PDF is not yet due to be assembled from unperformed work.
+This package has no live accounts or database. Do not upload .venv, db.sqlite3, __pycache__, .env, or real credentials. Settings are for local development only. ChatGPT assisted with this package. Review and reproduce the work before demonstrating it.

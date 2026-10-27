@@ -1,0 +1,6 @@
+Command: python manage.py makemigrations --check --dry-run
+Runner: assistant, October 27, 2026
+
+No changes detected
+
+Exit status: 0

@@ -1,0 +1,6 @@
+Command: python manage.py check
+Runner: assistant, October 27, 2026
+
+System check identified no issues (0 silenced).
+
+Exit status: 0
