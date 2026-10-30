@@ -52,3 +52,5 @@ Upload the contents (docs, src, START_WEEK_1.md, START_WEEKS_2_3.md, and .gitign
 - docs/step_2/step_2_combined_review.pdf includes preserved Week 1 report and completion plan.
 
 The assignment's last paragraph uses research section titles despite the software-specific tables. The combined review uses the software titles; confirm the final heading expectation with Prof Pitts. The full application is not finished: cancellation, lending, returns, overdue reports and usage reporting remain.
+
+Student execution update (October 27): browser Pending -> Approved -> Unavailable observations and a 21-test pass in 1.791 seconds are recorded under docs/step_2/week_3/verification/student_run. See the updated Week 3 report.

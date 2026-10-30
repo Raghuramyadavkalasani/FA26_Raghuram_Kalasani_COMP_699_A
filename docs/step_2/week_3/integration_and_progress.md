@@ -55,10 +55,20 @@ FR-12 | Planned | Usage counts by date range
 ## Design changes and unresolved issues
 New templates and transactional services extend the original monolithic Django design. File-backed SQLite testing and IMMEDIATE write transactions address concurrent approvals. No production deployment claim is made. Validation errors are displayed inline or through Django messages.
 
-Unresolved: no lending lifecycle, cancellation, measured NFR-03 workload performance, real-browser compatibility evidence, or complete keyboard/accessibility review. Availability describes approved time reservations, not physical possession of equipment after a late return.
+Unresolved: no lending lifecycle, cancellation, measured NFR-03 workload performance, a Chrome/Safari compatibility comparison, or complete keyboard/accessibility review. Availability describes approved time reservations, not physical possession of equipment after a late return.
 
 The remaining prototype uses DEBUG and a public local development secret fallback. Deployment requires separate security/configuration work. Synthetic demonstration accounts contain no real student data.
 
 
 ## Next five development tasks
 1. Add owner-only cancellation with state rules and negative authorization tests. 2. Add checkout records and prevent duplicate/open-item checkout, including late returns. 3. Add idempotent return and overdue queries. 4. Add date-range usage counts verified against a hand-counted fixture. 5. Run workload/browser/accessibility evaluation and prepare the final demonstration and report.
+
+
+## Student execution evidence - October 27
+The student operated the application with step-by-step assistant guidance. Screenshots show demo-borrower creating Pending request #1 for October 28, 10:00-11:00; administrator raghuramkalasani approving it; and the borrower catalog showing the same laptop Unavailable for that interval.
+
+At 3:04 PM, the student ran python manage.py test inventory --verbosity 2. The Terminal screenshot records 21 tests in 1.791 seconds and OK. This is a separate student run from the earlier assistant run of 2.127 seconds. Test databases are separate from the application database.
+
+The student also reported seeing an invalid-input error. No screenshot of that error was supplied, and the server log includes a later successful POST; the manual record count is therefore not independently confirmed. Automated tests verify the invalid-input/no-write behavior.
+
+Screenshots were supplied in the chat at 2:54, 2:56, 2:59 and 3:04 PM. Their temporary source files were unavailable when packaging, so image copies are not bundled. week_3/verification/student_run/README.txt records the observations; retain the original screenshots separately. The student browser evidence does not establish cross-browser compatibility, accessibility compliance or workload performance.

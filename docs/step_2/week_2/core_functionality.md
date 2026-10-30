@@ -48,4 +48,4 @@ Cancellation, checkout, return, overdue detection and usage reporting remain pla
 ## Reference and assistance
 Django Software Foundation. n.d. “Databases.” Django Documentation. Accessed October 27, 2026. https://docs.djangoproject.com/en/5.1/ref/databases/.
 
-Implementation, test execution and report preparation used OpenAI assistant support. Student review, explanation of the rules, and an independent browser demonstration are still needed before submission.
+Implementation, test execution and report preparation used OpenAI assistant support. The student subsequently ran the browser workflow with guidance and all 21 tests passed in 1.791 seconds, as documented in Week 3 student_run screenshots. Review of the code and explanation of its rules remain the student’s responsibility.
