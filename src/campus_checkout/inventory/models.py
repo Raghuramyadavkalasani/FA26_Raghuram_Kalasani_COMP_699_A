@@ -25,6 +25,7 @@ class Reservation(models.Model):
         PENDING = "pending", "Pending"
         APPROVED = "approved", "Approved"
         REJECTED = "rejected", "Rejected"
+        CANCELLED = "cancelled", "Cancelled"
 
     equipment = models.ForeignKey(Equipment, on_delete=models.PROTECT)
     borrower = models.ForeignKey("auth.User", on_delete=models.PROTECT, related_name="reservations")
@@ -34,6 +35,13 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     reviewed_by = models.ForeignKey("auth.User", null=True, blank=True, on_delete=models.PROTECT, related_name="reviews")
     reviewed_at = models.DateTimeField(null=True, blank=True)
+
+    cancelled_at = models.DateTimeField(null=True, blank=True)
+
+    @property
+    def can_cancel(self):
+        from django.utils import timezone
+        return self.status in ("pending", "approved") and self.start > timezone.now()
 
     class Meta:
         ordering = ["-created_at"]

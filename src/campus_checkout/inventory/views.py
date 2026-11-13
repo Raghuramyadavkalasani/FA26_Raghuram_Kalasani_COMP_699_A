@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 from .forms import IntervalForm, SearchForm
 from .models import Equipment, Reservation
-from .services import conflicts, request_reservation, review_reservation
+from .services import conflicts, request_reservation, review_reservation, cancel_reservation
 
 @login_required
 def catalog(request):
@@ -66,3 +66,19 @@ def decide(request, pk):
     else:
         messages.success(request, "Reservation decision saved.")
     return redirect("review_queue")
+
+
+@login_required
+@require_POST
+def cancel(request, pk):
+    try:
+        cancel_reservation(request.user, pk)
+    except Reservation.DoesNotExist:
+        raise Http404
+    except ValidationError as exc:
+        messages.error(request, "; ".join(exc.messages))
+    except OperationalError:
+        messages.error(request, "Database is busy. Please retry cancellation.")
+    else:
+        messages.success(request, "Reservation cancelled. Any reserved time has been released.")
+    return redirect("my_reservations")

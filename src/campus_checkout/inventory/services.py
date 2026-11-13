@@ -55,3 +55,22 @@ def review_reservation(user, reservation_id, decision):
     reservation.reviewed_at = timezone.now()
     reservation.save(update_fields=["status", "reviewed_by", "reviewed_at"])
     return reservation
+
+
+@transaction.atomic
+def cancel_reservation(user, reservation_id):
+    """Owner-only cancellation before start; retain review history.
+
+    Pre-start cutoff is conservative until checkout state is implemented.
+    SQLite IMMEDIATE transactions serialize this with approval writes.
+    """
+    require_user(user)
+    reservation = Reservation.objects.get(pk=reservation_id)
+    if reservation.borrower_id != user.pk:
+        raise PermissionDenied
+    if not reservation.can_cancel:
+        raise ValidationError("Only pending or approved reservations that have not started can be cancelled.")
+    reservation.status = Reservation.Status.CANCELLED
+    reservation.cancelled_at = timezone.now()
+    reservation.save(update_fields=["status", "cancelled_at"])
+    return reservation

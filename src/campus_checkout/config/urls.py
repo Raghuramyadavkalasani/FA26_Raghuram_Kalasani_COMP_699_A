@@ -9,6 +9,7 @@ urlpatterns = [
     path("accounts/logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("equipment/<int:pk>/reserve/", views.reserve, name="reserve"),
     path("reservations/", views.my_reservations, name="my_reservations"),
+    path("reservations/<int:pk>/cancel/", views.cancel, name="cancel_reservation"),
     path("review/", views.review_queue, name="review_queue"),
     path("review/<int:pk>/", views.decide, name="decide"),
     path("admin/", admin.site.urls),
