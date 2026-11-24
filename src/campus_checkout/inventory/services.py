@@ -1,6 +1,7 @@
 """Business rules. All application reservation writes go through these services."""
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.db import transaction
+from django.db.models import Q
 from django.utils import timezone
 from .models import Equipment, Reservation
 
@@ -15,7 +16,7 @@ def validate_interval(start, end):
 
 
 def conflicts(equipment, start, end):
-    return Reservation.objects.filter(equipment=equipment, status="approved", start__lt=end, end__gt=start)
+    return Reservation.objects.filter(Q(status="approved", start__lt=end, end__gt=start) | Q(status="checked_out"), equipment=equipment)
 
 
 def require_user(user):
@@ -74,3 +75,37 @@ def cancel_reservation(user, reservation_id):
     reservation.cancelled_at = timezone.now()
     reservation.save(update_fields=["status", "cancelled_at"])
     return reservation
+
+
+@transaction.atomic
+def checkout_reservation(user, reservation_id):
+    require_user(user)
+    if not user.has_perm("inventory.manage_lending"):
+        raise PermissionDenied
+    row = Reservation.objects.select_related("equipment").get(pk=reservation_id)
+    if not row.can_checkout:
+        raise ValidationError("Checkout requires an approved reservation within its scheduled interval.")
+    if not row.equipment.is_active:
+        raise ValidationError("Inactive equipment cannot be checked out.")
+    if Reservation.objects.filter(equipment=row.equipment, status="checked_out").exists():
+        raise ValidationError("This equipment has an unreturned checkout.")
+    row.status = "checked_out"
+    row.checked_out_at = timezone.now()
+    row.checked_out_by = user
+    row.save(update_fields=["status", "checked_out_at", "checked_out_by"])
+    return row
+
+
+@transaction.atomic
+def return_reservation(user, reservation_id):
+    require_user(user)
+    if not user.has_perm("inventory.manage_lending"):
+        raise PermissionDenied
+    row = Reservation.objects.get(pk=reservation_id)
+    if row.status != "checked_out":
+        raise ValidationError("Only checked-out equipment can be returned.")
+    row.status = "returned"
+    row.returned_at = timezone.now()
+    row.returned_by = user
+    row.save(update_fields=["status", "returned_at", "returned_by"])
+    return row

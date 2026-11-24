@@ -4,6 +4,8 @@ from django.urls import path
 from inventory import views
 
 urlpatterns = [
+    path("lending/", views.lending_queue, name="lending_queue"),
+    path("lending/<int:pk>/", views.lending_action, name="lending_action"),
     path("", views.catalog, name="catalog"),
     path("accounts/login/", auth_views.LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("accounts/logout/", auth_views.LogoutView.as_view(), name="logout"),

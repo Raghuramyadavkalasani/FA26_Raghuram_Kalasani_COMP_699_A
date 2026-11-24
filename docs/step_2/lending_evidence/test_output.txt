@@ -1,0 +1,79 @@
+Creating test database for alias 'default' ('/private/tmp/campus-lending-tests.sqlite3')...
+Destroying old test database for alias 'default' ('/private/tmp/campus-lending-tests.sqlite3')...
+Found 40 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: admin, auth, contenttypes, inventory, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying inventory.0001_initial... OK
+  Applying inventory.0002_reservation... OK
+  Applying inventory.0003_reservation_cancelled_at_alter_reservation_status... OK
+  Applying inventory.0004_alter_reservation_options_reservation_checked_out_at_and_more... OK
+  Applying sessions.0001_initial...test_anonymous_redirect_and_inactive_service_denial (inventory.test_cancellation.CancellationTests.test_anonymous_redirect_and_inactive_service_denial) ... ok
+test_approved_cancel_releases_availability_and_allows_competing_approval (inventory.test_cancellation.CancellationTests.test_approved_cancel_releases_availability_and_allows_competing_approval) ... ok
+test_button_visible_only_for_eligible_reservations (inventory.test_cancellation.CancellationTests.test_button_visible_only_for_eligible_reservations) ... ok
+test_get_and_missing_csrf_cannot_mutate (inventory.test_cancellation.CancellationTests.test_get_and_missing_csrf_cannot_mutate) ... ok
+test_other_user_even_superuser_cannot_cancel (inventory.test_cancellation.CancellationTests.test_other_user_even_superuser_cannot_cancel) ... ok
+test_pending_owner_can_cancel_with_timestamp_and_history (inventory.test_cancellation.CancellationTests.test_pending_owner_can_cancel_with_timestamp_and_history) ... ok
+test_rejected_and_repeated_cancellation_are_rejected (inventory.test_cancellation.CancellationTests.test_rejected_and_repeated_cancellation_are_rejected) ... ok
+test_started_reservation_is_retained (inventory.test_cancellation.CancellationTests.test_started_reservation_is_retained) ... ok
+test_unknown_id_returns_404 (inventory.test_cancellation.CancellationTests.test_unknown_id_returns_404) ... ok
+test_checkout_time_boundaries_and_inactive_equipment (inventory.test_lending.LendingTests.test_checkout_time_boundaries_and_inactive_equipment) ... ok
+test_database_prevents_two_open_checkouts (inventory.test_lending.LendingTests.test_database_prevents_two_open_checkouts) ... ok
+test_duplicate_checkout_return_and_cancellation_rejected (inventory.test_lending.LendingTests.test_duplicate_checkout_return_and_cancellation_rejected) ... ok
+test_invalid_action_missing_record_and_return_before_checkout (inventory.test_lending.LendingTests.test_invalid_action_missing_record_and_return_before_checkout) ... ok
+test_only_approved_status_can_checkout (inventory.test_lending.LendingTests.test_only_approved_status_can_checkout) ... ok
+test_overdue_open_checkout_blocks_next_until_return (inventory.test_lending.LendingTests.test_overdue_open_checkout_blocks_next_until_return) ... ok
+test_permission_denied_for_borrower_and_staff_without_permission (inventory.test_lending.LendingTests.test_permission_denied_for_borrower_and_staff_without_permission) ... ok
+test_post_csrf_and_auth_required (inventory.test_lending.LendingTests.test_post_csrf_and_auth_required) ... ok
+test_request_approve_checkout_return_workflow (inventory.test_lending.LendingTests.test_request_approve_checkout_return_workflow) ... ok
+test_return_allowed_after_equipment_retired (inventory.test_lending.LendingTests.test_return_allowed_after_equipment_retired) ... ok
+test_approval_rechecks_retirement_and_time (inventory.test_reservations.ReservationTests.test_approval_rechecks_retirement_and_time) ... ok
+test_borrower_and_unprivileged_staff_denied (inventory.test_reservations.ReservationTests.test_borrower_and_unprivileged_staff_denied) ... ok
+test_csrf_and_get_cannot_mutate (inventory.test_reservations.ReservationTests.test_csrf_and_get_cannot_mutate) ... ok
+test_database_rejects_reversed_interval (inventory.test_reservations.ReservationTests.test_database_rejects_reversed_interval) ... ok
+test_inactive_equipment_rejected (inventory.test_reservations.ReservationTests.test_inactive_equipment_rejected) ... ok
+test_integrated_workflow_valid_and_invalid (inventory.test_reservations.ReservationTests.test_integrated_workflow_valid_and_invalid) ... ok
+test_invalid_intervals_do_not_write (inventory.test_reservations.ReservationTests.test_invalid_intervals_do_not_write) ... ok
+test_login_logout_invalid_credentials_and_anonymous (inventory.test_reservations.ReservationTests.test_login_logout_invalid_credentials_and_anonymous) ... ok
+test_overlap_rollback_and_different_item_allowed (inventory.test_reservations.ReservationTests.test_overlap_rollback_and_different_item_allowed) ... ok
+test_ownership_and_forged_owner (inventory.test_reservations.ReservationTests.test_ownership_and_forged_owner) ... ok
+test_pending_does_not_block_and_boundary_does_not_overlap (inventory.test_reservations.ReservationTests.test_pending_does_not_block_and_boundary_does_not_overlap) ... ok
+test_reject_and_repeated_decision (inventory.test_reservations.ReservationTests.test_reject_and_repeated_decision) ... ok
+test_search_availability_and_invalid_time (inventory.test_reservations.ReservationTests.test_search_availability_and_invalid_time) ... ok
+test_valid_request_persists_owner_and_pending (inventory.test_reservations.ReservationTests.test_valid_request_persists_owner_and_pending) ... ok
+test_admin_can_create_edit_and_retire_equipment (inventory.tests.InventoryTests.test_admin_can_create_edit_and_retire_equipment) ... ok
+test_anonymous_user_redirected_to_login (inventory.tests.InventoryTests.test_anonymous_user_redirected_to_login) ... ok
+test_duplicate_asset_tag_rejected_by_database (inventory.tests.InventoryTests.test_duplicate_asset_tag_rejected_by_database) ... ok
+test_invalid_asset_tag_rejected (inventory.tests.InventoryTests.test_invalid_asset_tag_rejected) ... ok
+test_regular_user_cannot_add_equipment (inventory.tests.InventoryTests.test_regular_user_cannot_add_equipment) ... ok
+test_staff_without_permissions_cannot_add_equipment (inventory.tests.InventoryTests.test_staff_without_permissions_cannot_add_equipment) ... ok
+test_two_connections_approve_at_most_one (inventory.test_reservations.ConcurrentApprovalTests.test_two_connections_approve_at_most_one) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 2.375s
+
+OK
+Destroying test database for alias 'default' ('/private/tmp/campus-lending-tests.sqlite3')...
+ OK
+System check identified no issues (0 silenced).

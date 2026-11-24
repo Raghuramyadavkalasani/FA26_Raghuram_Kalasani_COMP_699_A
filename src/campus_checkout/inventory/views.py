@@ -82,3 +82,32 @@ def cancel(request, pk):
     else:
         messages.success(request, "Reservation cancelled. Any reserved time has been released.")
     return redirect("my_reservations")
+
+
+@login_required
+@permission_required("inventory.manage_lending", raise_exception=True)
+def lending_queue(request):
+    rows = Reservation.objects.select_related("equipment", "borrower")
+    return render(request, "inventory/reservations.html", {"rows": rows, "lending": True})
+
+
+@login_required
+@permission_required("inventory.manage_lending", raise_exception=True)
+@require_POST
+def lending_action(request, pk):
+    from .services import checkout_reservation, return_reservation
+    try:
+        action = request.POST.get("action")
+        if action not in ("checkout", "return"):
+            raise ValidationError("Choose checkout or return.")
+        operation = checkout_reservation if action == "checkout" else return_reservation
+        operation(request.user, pk)
+    except Reservation.DoesNotExist:
+        raise Http404
+    except ValidationError as exc:
+        messages.error(request, "; ".join(exc.messages))
+    except OperationalError:
+        messages.error(request, "Database is busy. Please retry.")
+    else:
+        messages.success(request, "Equipment checkout recorded." if action == "checkout" else "Equipment return recorded.")
+    return redirect("lending_queue")

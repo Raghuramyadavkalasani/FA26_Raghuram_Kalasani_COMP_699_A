@@ -26,15 +26,27 @@ class Reservation(models.Model):
         APPROVED = "approved", "Approved"
         REJECTED = "rejected", "Rejected"
         CANCELLED = "cancelled", "Cancelled"
+        CHECKED_OUT = "checked_out", "Checked out"
+        RETURNED = "returned", "Returned"
 
     equipment = models.ForeignKey(Equipment, on_delete=models.PROTECT)
     borrower = models.ForeignKey("auth.User", on_delete=models.PROTECT, related_name="reservations")
     start = models.DateTimeField()
     end = models.DateTimeField()
-    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING)
+    status = models.CharField(max_length=12, choices=Status.choices, default=Status.PENDING)
     created_at = models.DateTimeField(auto_now_add=True)
     reviewed_by = models.ForeignKey("auth.User", null=True, blank=True, on_delete=models.PROTECT, related_name="reviews")
     reviewed_at = models.DateTimeField(null=True, blank=True)
+
+    checked_out_at = models.DateTimeField(null=True, blank=True)
+    returned_at = models.DateTimeField(null=True, blank=True)
+    checked_out_by = models.ForeignKey("auth.User", null=True, blank=True, on_delete=models.PROTECT, related_name="checkouts_recorded")
+    returned_by = models.ForeignKey("auth.User", null=True, blank=True, on_delete=models.PROTECT, related_name="returns_recorded")
+
+    @property
+    def can_checkout(self):
+        from django.utils import timezone
+        return self.status == "approved" and self.start <= timezone.now() < self.end
 
     cancelled_at = models.DateTimeField(null=True, blank=True)
 
@@ -45,6 +57,6 @@ class Reservation(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
-        permissions = [("review_reservation", "Can approve or reject reservation requests")]
-        constraints = [models.CheckConstraint(condition=models.Q(end__gt=models.F("start")), name="reservation_positive_interval")]
+        permissions = [("review_reservation", "Can approve or reject reservation requests"), ("manage_lending", "Can record equipment checkout and return")]
+        constraints = [models.UniqueConstraint(fields=["equipment"], condition=models.Q(status="checked_out"), name="one_open_checkout_per_equipment"), models.CheckConstraint(condition=models.Q(end__gt=models.F("start")), name="reservation_positive_interval")]
         indexes = [models.Index(fields=["equipment", "status", "start", "end"])]
